@@ -1,0 +1,1136 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Geo:ital@0;1&family=Krona+One&family=Montserrat:ital,wght@0,100;1,100&family=Notable&family=Sedan+SC&family=Zalando+Sans+SemiExpanded:ital,wght@0,200..900;1,200..900&display=swap');
+
+/* Reset & Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  /* Colors */
+  --background: oklch(0.99 0 0);
+  --foreground: oklch(0.18 0.01 255);
+  --primary: oklch(0.32 0.15 255);
+  --primary-foreground: oklch(0.99 0 0);
+  --secondary: oklch(0.95 0.01 255);
+  --muted-foreground: oklch(0.52 0.02 255);
+  --accent: oklch(0.42 0.18 200);
+  --border: oklch(0.92 0.01 255);
+
+  /* Spacing */
+  --radius: 0.625rem;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  background-color: var(--background);
+  color: var(--foreground);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+#header {
+  position: fixed;
+  top: 20px;               /* opsional */
+  left: 50%;
+  transform: translateX(-50%);
+
+  width: 40%;
+  z-index: 1000;
+  transition: all 0.3s ease;
+  border-radius: 50px;
+
+  display: flex;
+  justify-content: center;
+}
+
+
+#header.scrolled {
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 80px;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--foreground);
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.logo:hover {
+  color: var(--primary);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.nav-links button {
+  background: none;
+  border: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--muted-foreground);
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.nav-links button:hover {
+  color: var(--foreground);
+}
+
+.mobile-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+.menu-icon {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background-color: var(--foreground);
+  position: relative;
+}
+
+.menu-icon::before,
+.menu-icon::after {
+  content: "";
+  position: absolute;
+  width: 24px;
+  height: 2px;
+  background-color: var(--foreground);
+  transition: all 0.3s ease;
+}
+
+.menu-icon::before {
+  top: -8px;
+}
+
+.menu-icon::after {
+  bottom: -8px;
+}
+
+.logo-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.logo-img {
+  height: 48px;          /* ukuran logo */
+  width: 48px;
+  display: block;
+  object-fit: contain;
+  border-radius: 50%;
+
+
+  /* smooth hover */
+  transition: opacity 0.3s ease;
+}
+
+.logo-btn:hover .logo-img {
+  opacity: 0.9;
+}
+
+
+
+.mobile-menu {
+  display: none;
+  flex-direction: column;
+  gap: 1rem;
+  padding-bottom: 1rem;
+}
+
+.mobile-menu.active {
+  display: flex;
+  animation: slideDown 0.3s ease;
+}
+
+.mobile-menu button {
+  background: none;
+  border: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--muted-foreground);
+  cursor: pointer;
+  text-align: left;
+  padding: 0.5rem 0;
+  transition: color 0.3s ease;
+}
+
+.mobile-menu button:hover {
+  color: var(--foreground);
+}
+
+/* Button Styles */
+.btn-primary {
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: var(--radius);
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.btn-large {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--foreground);
+  border: 1px solid var(--border);
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius);
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-outline:hover {
+  background-color: var(--secondary);
+}
+
+/* Hero Section */
+.hero-section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8rem 1rem 4rem;
+}
+
+.hero-content {
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* Profile Image */
+.profile-wrapper {
+  position: relative;
+  flex-shrink: 0;
+  animation: fadeInLeft 0.7s ease;
+}
+
+.profile-glow {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  border-radius: 50%;
+  filter: blur(40px);
+  opacity: 0.2;
+  animation: pulse 3s ease-in-out infinite;
+}
+
+.profile-image {
+  position: relative;
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 4px solid rgba(47, 79, 209, 0.2);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+}
+
+.profile-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Hero Text */
+.hero-text {
+  flex: 1;
+  text-align: left;
+  animation: fadeInRight 0.7s ease;
+}
+
+.greeting {
+  margin-bottom: 1rem;
+}
+
+.greeting-text {
+  font-size: 1.25rem;
+  color: var(--muted-foreground);
+  font-weight: 500;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.name-title {
+  font-size: 5rem;
+  font-weight: 700;
+  font-family: "krona one";
+  background: linear-gradient(90deg, var(--primary), var(--accent), var(--primary));
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientFlow 8s ease infinite;
+  line-height: 1.1;
+}
+
+.job-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--foreground);
+  margin-bottom: 1rem;
+}
+
+.description {
+  font-size: 1.125rem;
+  color: var(--muted-foreground);
+  max-width: 600px;
+  margin-bottom: 2rem;
+  line-height: 1.7;
+}
+
+/* Instagram Card */
+.instagram-card {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 1.5rem;
+  background: linear-gradient(135deg, rgba(147, 51, 234, 0.1), rgba(236, 72, 153, 0.1), rgba(251, 146, 60, 0.1));
+  border: 1px solid rgba(147, 51, 234, 0.2);
+  border-radius: calc(var(--radius) * 2);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  margin-bottom: 2rem;
+}
+
+.instagram-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 30px rgba(147, 51, 234, 0.2);
+  background: linear-gradient(135deg, rgba(147, 51, 234, 0.2), rgba(236, 72, 153, 0.2), rgba(251, 146, 60, 0.2));
+}
+
+.instagram-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #9333ea, #ec4899, #fb923c);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.instagram-text {
+  text-align: left;
+}
+
+.instagram-label {
+  font-size: 0.875rem;
+  color: var(--muted-foreground);
+  margin-bottom: 0.125rem;
+}
+
+.instagram-username {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--foreground);
+  transition: color 0.3s ease;
+}
+
+.instagram-card:hover .instagram-username {
+  color: var(--primary);
+}
+
+.arrow-icon {
+  color: var(--muted-foreground);
+  transition: all 0.3s ease;
+}
+
+.instagram-card:hover .arrow-icon {
+  color: var(--primary);
+  transform: translateX(4px);
+}
+
+/* CTA Buttons */
+.cta-buttons {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+/* Social Links */
+.social-links {
+  display: flex;
+  gap: 1rem;
+  padding-top: 1rem;
+}
+
+.social-links a {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: var(--secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--foreground);
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.social-links a:hover {
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+  transform: scale(1.1);
+}
+
+/* Animations */
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes gradientFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  #header {
+    position: fixed;
+  top: 20px;               /* opsional */
+  left: 50%;
+  transform: translateX(-50%);
+
+  width: 90%;
+  transition: all 0.3s ease;
+
+  display: flex;
+  justify-content: center;
+  }
+}
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+  }
+
+  .mobile-toggle {
+    display: block;
+  }
+
+  .hero-content {
+    flex-direction: column;
+    gap: 3rem;
+    text-align: center;
+  }
+
+  .hero-text {
+    text-align: center;
+  }
+
+  .profile-image {
+    width: 256px;
+    height: 256px;
+  }
+
+  .name-title {
+    font-size: 3.5rem;
+  }
+
+  .job-title {
+    font-size: 1.25rem;
+  }
+
+  .description {
+    font-size: 1rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .cta-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .cta-buttons button {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .social-links {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .name-title {
+    font-size: 2.5rem;
+  }
+
+  .profile-image {
+    width: 200px;
+    height: 200px;
+  }
+}
+
+
+:root {
+            --primary-bg: #f8fbfe;
+            --card-bg: #ffffff;
+            --accent-blue: #2d5a8e;
+            --text-dark: #1a1a1a;
+            --text-muted: #555555;
+            --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.05);
+            --transition-speed: 0.4s;
+}
+/* Container Utama */
+        .zenith-profile-wrapper {
+            max-width: 1100px;
+            margin: 0% auto;
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+        }
+
+        /* Judul Section */
+        .zenith-main-headline {
+            font-family: 'Krona One', sans-serif;
+            font-size: 2.5rem;
+            color: var(--text-dark);
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+
+        .zenith-intro-paragraph {
+            max-width: 700px;
+            margin: 0 auto 50px;
+            color: var(--text-muted);
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+
+        /* Grid Layout */
+        .zenith-capability-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        /* Card Styling */
+        .zenith-feature-card {
+            background: var(--card-bg);
+            padding: 40px 30px;
+            border-radius: 20px;
+            border: 1px solid rgba(0,0,0,0.03);
+            box-shadow: var(--shadow-soft);
+            text-align: left;
+            transition: all var(--transition-speed) cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Icon Wrapper */
+        .zenith-icon-box {
+            width: 50px;
+            height: 50px;
+            background: #eef4ff;
+            color: var(--accent-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            font-size: 1.4rem;
+            transition: transform var(--transition-speed);
+        }
+
+        .zenith-card-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1.3rem;
+            color: var(--text-dark);
+            margin-bottom: 15px;
+        }
+
+        .zenith-card-desc {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        /* --- Efek Hover --- */
+        .zenith-feature-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 20px 40px rgba(45, 90, 142, 0.12);
+            border-color: var(--accent-blue);
+        }
+
+        .zenith-feature-card:hover .zenith-icon-box {
+            background: var(--accent-blue);
+            color: #fff;
+            transform: rotateY(180deg);
+        }
+
+        /* Dekorasi garis bawah saat hover */
+        .zenith-feature-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 4px;
+            background: var(--accent-blue);
+            transition: width var(--transition-speed);
+        }
+
+        .zenith-feature-card:hover::after {
+            width: 100%;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .zenith-main-headline { font-size: 1.8rem; }
+            .zenith-intro-paragraph { font-size: 1rem; }
+        }
+
+        @media (max-width: 768px ) {
+          .zenith-profile-wrapper {
+            max-width: 1100px;
+            margin-left: 3%;
+            margin-right: 3%;
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+        }
+        }
+
+
+:root {
+            --bg-canvas: #f0f4f8;
+            --accent-gradient: linear-gradient(135deg, #2d5a8e 0%, #1a3a5f 100%);
+            --glass-white: rgba(255, 255, 255, 0.9);
+            --text-main: #2c3e50;
+        }
+
+        .skill-section-wrapper {
+            padding: 80px 20px;
+            background-color: var(--bg-canvas);
+            font-family: 'Montserrat', sans-serif;
+            text-align: center;
+        }
+
+        .section-title {
+            font-family: 'Krona One', sans-serif;
+            font-size: 2rem;
+            color: var(--text-main);
+            margin-bottom: 40px;
+            position: relative;
+            display: inline-block;
+        }
+
+        /* Garis bawah dekoratif */
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 50%;
+            height: 4px;
+            background: var(--accent-gradient);
+            margin: 10px auto 0;
+            border-radius: 10px;
+        }
+
+        .skills-grid-modern {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .skill-card-modern {
+            background: var(--glass-white);
+            padding: 40px 30px;
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Efek Gradient di pucuk card saat hover */
+        .skill-card-modern::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 5px;
+            background: var(--accent-gradient);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .skill-card-modern:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(45, 90, 142, 0.15);
+            background: #ffffff;
+        }
+
+        .skill-card-modern:hover::before {
+            opacity: 1;
+        }
+
+        .skill-icon-wrap {
+            width: 70px;
+            height: 70px;
+            background: #f0f7ff;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            color: #2d5a8e;
+            transition: 0.3s;
+        }
+
+        .skill-card-modern:hover .skill-icon-wrap {
+            background: var(--accent-gradient);
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .skill-label {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--text-main);
+            margin-top: 10px;
+        }
+
+
+
+        .image-scroll-container {
+            width: 100%;
+            height: auto;
+            max-width: 1200px; /* Batasi lebar container */
+            margin: 0% auto;
+            padding: 20px;
+            border-radius: 15px;
+        }
+
+        .scroll-gallery-title {
+            text-align: center;
+            font-size: 1.8rem;
+            color: #333;
+            margin-bottom: 25px;
+        }
+
+        /* ----- Main Scrollable Area ----- */
+        .horizontal-gallery {
+            display: flex;
+            overflow-x: auto; /* Mengaktifkan scroll horizontal */
+            scroll-snap-type: x mandatory; /* Memastikan gambar berhenti di posisi snap */
+            scroll-behavior: smooth; /* Guliran menjadi lebih halus */
+            padding-bottom: 15px; /* Memberi ruang untuk indikator scroll */
+            gap: 15px; /* Jarak antar gambar */
+        }
+
+        /* Menghilangkan scrollbar default */
+        .horizontal-gallery::-webkit-scrollbar {
+            display: none;
+        }
+        .horizontal-gallery {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+
+        .gallery-item {
+            flex: 0 0 auto; /* Penting: mencegah gambar menyusut */
+            width: 580px; /* Lebar setiap item gambar */
+            height: 380px; /* Tinggi setiap item gambar */
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            scroll-snap-align: start; /* Titik berhenti scroll */
+            transition: transform 0.2s ease-out;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.02); /* Sedikit membesar saat di-hover */
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Memastikan gambar mengisi penuh tanpa terdistorsi */
+            display: block; /* Menghilangkan spasi bawah gambar */
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 600px) {
+            .gallery-item {
+                width: 240px; /* Ukuran gambar lebih kecil di layar kecil */
+                height: 160px;
+            }
+        }
+
+/* --- Layout Dasar --- */
+.driver-contact-section {
+    padding: 80px 5%;
+    background-color: #ffffff;
+}
+
+.driver-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.driver-split-layout {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr; /* Rasio kolom sesuai gambar */
+    gap: 60px;
+    align-items: start;
+}
+
+/* --- Kolom Kiri (Contact) --- */
+.contact-title-serif {
+    font-family: 'Krona One', sans-serif; /* Sesuai desain screenshot */
+    font-size: 32px;
+    color: #0f172a;
+    margin-bottom: 30px;
+}
+
+.contact-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.contact-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background-color: #f8fafc;
+    padding: 16px 20px;
+    border-radius: 12px;
+}
+
+.contact-icon-bg {
+    background-color: #e7f4ec;
+    color: #15803d;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    font-size: 20px;
+}
+
+.contact-details small {
+    display: block;
+    color: #64748b;
+    font-size: 13px;
+    margin-bottom: 2px;
+}
+
+.contact-details p {
+    margin: 0;
+    font-weight: 700;
+    color: #0f172a;
+    font-family: "montserrat";
+}
+
+.contact-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 35px;
+}
+
+/* --- Kolom Kanan (Booking - Dark) --- */
+.booking-side-card {
+    background-color: #0f172a; /* Warna biru gelap sesuai screenshot */
+    color: #ffffff;
+    padding: 50px 40px;
+    border-radius: 24px;
+}
+
+.booking-title {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 30px;
+}
+
+.booking-item {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 25px;
+}
+
+.booking-icon-box {
+    background-color: #1e293b;
+    color: #22c55e; /* Hijau terang untuk ikon di background gelap */
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    flex-shrink: 0;
+}
+
+.booking-text strong {
+    display: block;
+    font-size: 16px;
+    margin-bottom: 4px;
+}
+
+.booking-text p {
+    margin: 0;
+    font-size: 14px;
+    color: #94a3b8; /* Teks abu-abu di dark mode */
+    line-height: 1.5;
+}
+
+.booking-divider {
+    border: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin: 30px 0;
+}
+
+.booking-footer-note {
+    font-size: 14px;
+    color: #94a3b8;
+    line-height: 1.6;
+}
+
+/* --- Tombol --- */
+.btn-filled-green {
+    background-color: #15803d;
+    color: white;
+    padding: 14px 30px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-outline-dark {
+    border: 1px solid #e2e8f0;
+    color: #0f172a;
+    padding: 14px 30px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* --- Responsive --- */
+@media (max-width: 900px) {
+    .driver-split-layout {
+        grid-template-columns: 1fr;
+    }
+    
+    .contact-actions {
+        flex-direction: column;
+    }
+}
+
+/* From Uiverse.io by wilsondesouza */ 
+ul {
+  list-style: none;
+}
+
+.example-2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.example-2 .icon-content {
+  margin: 0 10px;
+  position: relative;
+}
+.example-2 .icon-content .tooltip {
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 5px;
+  opacity: 0;
+  visibility: hidden;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+.example-2 .icon-content:hover .tooltip {
+  opacity: 1;
+  visibility: visible;
+  top: -50px;
+}
+.example-2 .icon-content a {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  color: #4d4d4d;
+  background-color: #fff;
+  transition: all 0.3s ease-in-out;
+}
+.example-2 .icon-content a:hover {
+  box-shadow: 3px 2px 45px 0px rgb(0 0 0 / 12%);
+}
+.example-2 .icon-content a svg {
+  position: relative;
+  z-index: 1;
+  width: 30px;
+  height: 30px;
+}
+.example-2 .icon-content a:hover {
+  color: white;
+}
+.example-2 .icon-content a .filled {
+  position: absolute;
+  top: auto;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 0;
+  background-color: #000;
+  transition: all 0.3s ease-in-out;
+}
+.example-2 .icon-content a:hover .filled {
+  height: 100%;
+}
+
+.example-2 .icon-content a[data-social="whatsapp"] .filled,
+.example-2 .icon-content a[data-social="whatsapp"] ~ .tooltip {
+  background-color: #128c7e;
+}
+
+.example-2 .icon-content a[data-social="facebook"] .filled,
+.example-2 .icon-content a[data-social="facebook"] ~ .tooltip {
+  background-color: #3b5998;
+}
+.example-2 .icon-content a[data-social="instagram"] .filled,
+.example-2 .icon-content a[data-social="instagram"] ~ .tooltip {
+  background: linear-gradient(
+    45deg,
+    #405de6,
+    #5b51db,
+    #b33ab4,
+    #c135b4,
+    #e1306c,
+    #fd1f1f
+  );
+}
+.example-2 .icon-content a[data-social="youtube"] .filled,
+.example-2 .icon-content a[data-social="youtube"] ~ .tooltip {
+  background-color: #ff0000;
+}
+
+
+.tunggu-saya {
+  font-size: 3em;
+  font-family: "krona one";
+  font-weight: 700;
+  text-align: center;
+}
