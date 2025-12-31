@@ -1132,6 +1132,10 @@ ul {
   background-color: #ff0000;
 }
 
+.tooltip i {
+  font-size: 2em;
+}
+
 
 .tunggu-saya {
   font-size: 3em;
