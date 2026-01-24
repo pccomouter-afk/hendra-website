@@ -123,27 +123,6 @@
         </div>
     </header>
 
-
-    <?php
-    function salam() {
-        date_default_timezone_set('Asia/Jakarta');
-        $jam = date("H");
-
-        if ( $jam >= 5 && $jam < 11 ) {
-            echo "Good morning everyone";
-        } elseif ( $jam >= 11 && $jam < 15 ) {
-            echo "Good afternoon everyone";
-        } elseif ( $jam >= 15 && $jam < 18 ) {
-            echo "Good afternoon everyone";
-        } else {
-            echo "Good evening everyone";
-        }
-    }
-
-    ?>
-
-    
-
     <!-- Hero Section -->
     <section id="hero" class="hero-section" >
         <div class="container">
@@ -164,7 +143,7 @@
      data-aos-duration="3000">
                         <span class="greeting-text">Hi! I'm</span>
                         <h1 class="name-title">Hendra</h1>
-                        <h1><?php echo salam();?></h1>
+                        <h1 id="salam"></h1>
                     </div>
                     <p class="job-title" data-aos="fade-up"
      data-aos-duration="3000">Web Developer</p>
@@ -414,6 +393,30 @@
     <script>
   AOS.init();
   </script>
+
+  
+
+<script>
+function salam() {
+    const jam = new Date().getHours();
+    let pesan = "";
+
+    if (jam >= 5 && jam < 11) {
+        pesan = "Good morning everyone";
+    } else if (jam >= 11 && jam < 15) {
+        pesan = "Good afternoon everyone";
+    } else if (jam >= 15 && jam < 18) {
+        pesan = "Good afternoon everyone";
+    } else {
+        pesan = "Good evening everyone";
+    }
+
+    return pesan;
+}
+
+document.getElementById("salam").innerText = salam();
+</script>
+
 
 </body>
 </html>
